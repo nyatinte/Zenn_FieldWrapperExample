@@ -10,8 +10,12 @@ import {
 import { Button } from '@/components/Elements';
 
 const schema = z.object({
-  name: z.string().min(1).max(10),
-  favoriteColor: z.enum(favoriteColor),
+  name: z.string().min(1, '名前を入力して下さい'),
+  favoriteColor: z.enum(favoriteColor, {
+    errorMap: () => ({
+      message: '好きな色を選択して下さい',
+    }),
+  }),
   comment: z.string().optional(),
 });
 type FormValues = z.infer<typeof schema>;
@@ -54,6 +58,7 @@ const SampleForm: NextPage = () => {
       />
       <InputField
         label='コメント'
+        description='※回答は任意です'
         error={errors.comment?.message}
         {...register('comment')}
       />
