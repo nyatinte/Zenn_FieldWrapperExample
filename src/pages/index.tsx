@@ -49,6 +49,7 @@ const SampleForm: NextPage = () => {
       <SelectField
         label='好きな色'
         options={favoriteColorSelectOptions}
+        error={errors.favoriteColor?.message}
         {...register('favoriteColor')}
       />
       <InputField

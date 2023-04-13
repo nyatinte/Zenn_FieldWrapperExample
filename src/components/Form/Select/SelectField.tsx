@@ -4,14 +4,9 @@ import { Select, SelectProps } from './Select';
 
 export type SelectFieldProps = SelectProps & FieldWrapperPassThroughProps;
 export const SelectField = forwardRef<HTMLSelectElement, SelectFieldProps>(
-  ({ label, error, className, description, ...props }, ref) => {
+  ({ label, error, description, ...props }, ref) => {
     return (
-      <FieldWrapper
-        label={label}
-        error={error}
-        description={description}
-        className={className}
-      >
+      <FieldWrapper label={label} error={error} description={description}>
         <Select {...props} ref={ref} />
       </FieldWrapper>
     );

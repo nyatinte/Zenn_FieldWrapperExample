@@ -4,14 +4,9 @@ import { Input, InputProps } from './Input';
 
 export type InputFieldProps = InputProps & FieldWrapperPassThroughProps;
 export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
-  ({ label, error, className, description, ...props }, ref) => {
+  ({ label, error, description, ...props }, ref) => {
     return (
-      <FieldWrapper
-        label={label}
-        error={error}
-        description={description}
-        className={className}
-      >
+      <FieldWrapper label={label} error={error} description={description}>
         <Input {...props} ref={ref} />
       </FieldWrapper>
     );
