@@ -1,4 +1,4 @@
-import { FC, ReactElement, cloneElement, forwardRef } from 'react';
+import { FC, ReactElement, ReactNode } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 type FieldWrapperProps = {
@@ -6,21 +6,24 @@ type FieldWrapperProps = {
   error?: string;
   description?: string;
   className?: string;
-  children: ReactElement;
+  children: ReactNode;
 };
 export type FieldWrapperPassThroughProps = Omit<
   FieldWrapperProps,
   'children' | 'className'
 >;
-export const FieldWrapper: FC<FieldWrapperProps> = forwardRef<
-  HTMLElement,
-  FieldWrapperProps
->(({ label, error, className, description, children }, ref) => {
+export const FieldWrapper: FC<FieldWrapperProps> = ({
+  label,
+  error,
+  className,
+  description,
+  children,
+}) => {
   return (
     <div>
-      <label className={twMerge('block', className)}>
+      <label className={twMerge('block mb-1', className)}>
         {label}
-        {cloneElement(children, { ref })}
+        {children}
       </label>
       {description && <p className='text-gray-500'>{description}</p>}
       {error && (
@@ -30,6 +33,4 @@ export const FieldWrapper: FC<FieldWrapperProps> = forwardRef<
       )}
     </div>
   );
-});
-
-FieldWrapper.displayName = 'FieldWrapper';
+};
